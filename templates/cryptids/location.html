@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ location.location_place }}{% endblock %}
+{% block CSS %}
+<link rel="stylesheet" href="{% static 'cryptids/animals.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="icons">
+
+    <div class="div_icons"> <a href="{% url 'index' %}" class="icon-block">
+        <i class="material-icons home" style="font-size:80px;">home</i> </a>
+    <p>Home</p>
+</div>
+
+   
+
+
+    <div class="div_icons"> <a href="{% url 'form' %}" class="icon-block">
+            <i class="material-icons add_location_alt" style="font-size:80px;">add_location_alt </i> </a>
+        <p> Add new sightings </P>
+    </div>
+
+    <div class="div_icons"> <a href="{% url 'animals' %}" class="icon-block">
+            <i class="material-icons pets" style="font-size:80px;">pets</i> </a>
+        <p>Animals</p>
+    </div>
+
+
+
+<div class="div_icons"> <a href="{% url 'about' %}" class="icon-block">
+        <i class="material-icons edit" style="font-size:80px;">edit</i> </a>
+    <p>About</p>
+</div>
+
+<div class="about">
+    
+    <h1>{{ location }}</h1>
+    <ul>
+        {% for animal in animals %}
+        <li>
+            <div class="about4">
+               <h2> <a href="{% url 'detail' animal.id %}"> {{ animal.name }} </h2>
+               <img src="{{ animal.image.url }}"> 
+            </a>
+        </div>
+        </li>
+
+        {% empty %}
+        <li>No animals</li>
+
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
